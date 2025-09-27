@@ -1,0 +1,651 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Spot2MX URL Shortener API",
+        "description": "API para acortar URLs y gestionar enlaces cortos",
+        "contact": {
+            "email": "ricardobarcena.c@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/api/shortcuts": {
+            "get": {
+                "tags": [
+                    "Shortcuts"
+                ],
+                "summary": "Obtener lista de shortcuts",
+                "description": "Retorna todos los shortcuts del usuario autenticado",
+                "operationId": "getShortcuts",
+                "responses": {
+                    "200": {
+                        "description": "Lista de shortcuts obtenida exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcuts retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "count": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "shortcuts": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "short_url": {
+                                                                "type": "string",
+                                                                "example": "abc123"
+                                                            },
+                                                            "original_url": {
+                                                                "type": "string",
+                                                                "example": "https://example.com"
+                                                            },
+                                                            "visits": {
+                                                                "type": "integer",
+                                                                "example": 10
+                                                            },
+                                                            "user_id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "status": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "format": "datetime"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "format": "datetime"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthenticated"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Shortcuts"
+                ],
+                "summary": "Crear nuevo shortcut",
+                "description": "Crea un nuevo shortcut para una URL original",
+                "operationId": "createShortcut",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "original_url"
+                                ],
+                                "properties": {
+                                    "original_url": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "https://www.google.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Shortcut creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcut created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "short_url": {
+                                                    "type": "string",
+                                                    "example": "abc123"
+                                                },
+                                                "original_url": {
+                                                    "type": "string",
+                                                    "example": "https://www.google.com"
+                                                },
+                                                "visits": {
+                                                    "type": "integer",
+                                                    "example": 0
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "original_url": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/shortcuts/{id}": {
+            "get": {
+                "tags": [
+                    "Shortcuts"
+                ],
+                "summary": "Obtener shortcut específico",
+                "description": "Retorna un shortcut específico por su ID",
+                "operationId": "getShortcut",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del shortcut",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Shortcut obtenido exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcut retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "short_url": {
+                                                    "type": "string",
+                                                    "example": "abc123"
+                                                },
+                                                "original_url": {
+                                                    "type": "string",
+                                                    "example": "https://example.com"
+                                                },
+                                                "visits": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "datetime"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "datetime"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Shortcut no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcut not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Shortcuts"
+                ],
+                "summary": "Actualizar shortcut",
+                "description": "Actualiza un shortcut existente",
+                "operationId": "updateShortcut",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del shortcut",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "original_url"
+                                ],
+                                "properties": {
+                                    "original_url": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "https://www.updated-url.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Shortcut actualizado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcut updated successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "short_url": {
+                                                    "type": "string",
+                                                    "example": "abc123"
+                                                },
+                                                "original_url": {
+                                                    "type": "string",
+                                                    "example": "https://www.updated-url.com"
+                                                },
+                                                "visits": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "status": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "datetime"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "datetime"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error de validación",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "original_url": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Shortcuts"
+                ],
+                "summary": "Eliminar shortcut",
+                "description": "Elimina un shortcut (cambia su status a inactivo)",
+                "operationId": "deleteShortcut",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del shortcut",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Shortcut eliminado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcut deleted successfully"
+                                        },
+                                        "data": {
+                                            "type": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Shortcut no encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shortcut not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/redirect/{shortUrl}": {
+            "get": {
+                "tags": [
+                    "Redirect"
+                ],
+                "summary": "Redireccionar shortcut",
+                "description": "Obtiene la URL original de un shortcut y incrementa las visitas",
+                "operationId": "redirectShortcut",
+                "parameters": [
+                    {
+                        "name": "shortUrl",
+                        "in": "path",
+                        "description": "Código corto del shortcut",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "abc123"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "URL encontrada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "URL found successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "original_url": {
+                                                    "type": "string",
+                                                    "example": "https://www.google.com"
+                                                },
+                                                "short_url": {
+                                                    "type": "string",
+                                                    "example": "abc123"
+                                                },
+                                                "visits": {
+                                                    "type": "integer",
+                                                    "example": 11
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Shortcut no encontrado o inactivo",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Short URL not found or inactive"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Shortcuts",
+            "description": "Shortcuts"
+        },
+        {
+            "name": "Redirect",
+            "description": "Redirect"
+        }
+    ]
+}
