@@ -77,67 +77,35 @@ php artisan route:clear
 - PUT /api/shortcuts/{id} - Actualizar shortcut
 - DELETE /api/shortcuts/{id} - Eliminar shortcut
 
-# 
+## 📚 Documentación API
+La documentación de la API está disponible en Swagger UI: http://18.216.237.66/api/documentation
 
-# \## 📚 Documentación API
+## 🎨 Personalización
 
-# 
+### Componentes UI
+Los componentes están en resources/js/components/ui/ y siguen el patrón de Radix UI con Tailwind CSS.
 
-# La documentación de la API está disponible en Swagger UI:
+### Estilos
 
-# \- http://localhost:8000/api/documentation](http://18.216.237.66/api/documentation
+- Tailwind CSS 4 para estilos
+- CSS Variables para temas
+- Responsive design por defecto
 
-# 
+### 🚀 Despliegue
+Variables de Entorno Importantes
 
-# \## 🎨 Personalización
+- env
+- APP\_NAME="Spot2MX"
+- APP\_URL=https://localhost:8000 (generado al ejecutar el proyecto)
+- DB\_CONNECTION=mysql
+- DB\_DATABASE=nombre\_bbdd
 
-# 
+### Pasos de Despliegue
 
-# \### Componentes UI
-
-# Los componentes están en resources/js/components/ui/ y siguen el patrón de Radix UI con Tailwind CSS.
-
-# 
-
-# \### Estilos
-
-# \- Tailwind CSS 4 para estilos
-
-# \- CSS Variables para temas
-
-# \- Responsive design por defecto
-
-# 
-
-# \## 🚀 Despliegue
-
-# 
-
-# \### Variables de Entorno Importantes
-
-# env
-
-# APP\_NAME="Spot2MX"
-
-# APP\_URL=https://localhost:8000 (generado al ejecutar el proyecto)
-
-# 
-
-# DB\_CONNECTION=mysql
-
-# DB\_DATABASE=nombre\_bbdd
-
-# 
-
-# \### Pasos de Despliegue
-
-# 1\. Configurar servidor web (Apache/Nginx)
-
-# 2\. Instalar dependencias: composer install --no-dev
-
-# 3\. Compilar assets: npm run build
-
-# 4\. Ejecutar migraciones: php artisan migrate --force
-
-# 5\. Configurar permisos de storage y cache
+1\. Configurar servidor web (Apache)
+2\. Instalar dependencias: composer install --no-dev
+3\. Compilar assets: npm run build
+4\. Ejecutar migraciones: php artisan migrate --force
+5\. Configurar permisos de storage y cache
+6\. Eliminar el archivo hot (ubicado en /public)
 
