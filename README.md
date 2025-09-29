@@ -3,147 +3,79 @@ Technical Challenge Spot2 para acortar URLs construida con Laravel 12 y React 19
 
 ## 🚀 Características
 
-# 
+- Acortamiento de URLs: Convierte URLs largas en enlaces cortos y manejables
+- Gestión de enlaces: CRUD completo para URLs acortadas
+- Autenticación completa: Sistema de login/registro con Laravel Fortify
+- API REST: Endpoints para integración con aplicaciones externas
+- Documentación API: Swagger/OpenAPI integrado
+- Componentes UI modernos: Basados en Radix UI y Tailwind CSS
 
-# \- Acortamiento de URLs: Convierte URLs largas en enlaces cortos y manejables
+## 🛠️ Stack Tecnológico
 
-# \- Gestión de enlaces: CRUD completo para URLs acortadas
+### Backend
+- Laravel 12 - Framework PHP
+- Laravel Fortify - Autenticación
+- MySQL - Base de datos (configurable)
+- Swagger/OpenAPI - Documentación de API
 
-# \- Autenticación completa: Sistema de login/registro con Laravel Fortify
+### Frontend
+- React y TypeScript - Biblioteca de UI
+- Tailwind CSS 4 - CSS
+- Lucide React - Iconos
+- Vite - Tool
 
-# \- API REST: Endpoints para integración con aplicaciones externas
+## 📋 Requisitos de Sistema
 
-# \- Documentación API: Swagger/OpenAPI integrado
+- PHP 8.2+
+- Composer
+- Node.js 18+
+- npm o yarn
 
-# \- Componentes UI modernos: Basados en Radix UI y Tailwind CSS
+## 🚀 Instalación
 
-# 
+### 1. Configurar base de datos
+- Ejecutar migraciones
+php artisan migrate
 
-# \## 🛠️ Stack Tecnológico
+### 2. Compilar assets
 
-# 
+### Para desarrollo
+npm run dev
 
-# \### Backend
+### Para producción
+npm run build
 
-# \- Laravel 12 - Framework PHP
+## 🏃‍♂️ Ejecutar la Aplicación
 
-# \- Laravel Fortify - Autenticación
+composer run dev
 
-# \- MySQL - Base de datos (configurable)
+## 🔧 Comandos Útiles
 
-# \- Swagger/OpenAPI - Documentación de API
+### Laravel
+Migraciones: php artisan migrate
 
-# 
+### Cache
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
 
-# \### Frontend
+## 🌐 Rutas Principales
 
-# \- React y TypeScript - Biblioteca de UI
+### Web Routes
 
-# \- Tailwind CSS 4 - CSS
+- Página de inicio
+- /dashboard - Dashboard principal
+- /short\_urls - Lista de URLs acortadas
+- /short\_urls/create - Crear nueva URL
+- /short\_urls/edit/{id} - Editar URL
+- /short\_urls/shortcut/{short} - Redirección
 
-# \- Lucide React - Iconos
+### API Routes
 
-# \- Vite - Tool
-
-# 
-
-# \## 📋 Requisitos de Sistema
-
-# 
-
-# \- PHP 8.2+
-
-# \- Composer
-
-# \- Node.js 18+
-
-# \- npm o yarn
-
-# 
-
-# \## 🚀 Instalación
-
-# 
-
-# \### 1. Configurar base de datos
-
-# 
-
-# \# Ejecutar migraciones
-
-# php artisan migrate
-
-# 
-
-# \### 6. Compilar assets
-
-# bash
-
-# \# Para desarrollo
-
-# npm run dev
-
-# 
-
-# \# Para producción
-
-# npm run build
-
-# 
-
-# \## 🏃‍♂️ Ejecutar la Aplicación
-
-# composer run dev
-
-# \## 🔧 Comandos Útiles
-
-# \### Laravel
-
-# \# Migraciones
-
-# php artisan migrate
-
-# 
-
-# \# Cache
-
-# php artisan cache:clear
-
-# php artisan config:clear
-
-# php artisan route:clear
-
-# 
-
-# \## 🌐 Rutas Principales
-
-# 
-
-# \### Web Routes
-
-# \- / - Página de inicio
-
-# \- /dashboard - Dashboard principal
-
-# \- /short\_urls - Lista de URLs acortadas
-
-# \- /short\_urls/create - Crear nueva URL
-
-# \- /short\_urls/edit/{id} - Editar URL
-
-# \- /short\_urls/shortcut/{short} - Redirección
-
-# 
-
-# \### API Routes
-
-# \- GET /api/shortcuts - Listar shortcuts
-
-# \- POST /api/shortcuts - Crear shortcut
-
-# \- PUT /api/shortcuts/{id} - Actualizar shortcut
-
-# \- DELETE /api/shortcuts/{id} - Eliminar shortcut
+- GET /api/shortcuts - Listar shortcuts
+- POST /api/shortcuts - Crear shortcut
+- PUT /api/shortcuts/{id} - Actualizar shortcut
+- DELETE /api/shortcuts/{id} - Eliminar shortcut
 
 # 
 
