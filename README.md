@@ -102,10 +102,9 @@ Variables de Entorno Importantes
 
 ### Pasos de Despliegue
 
-1\. Configurar servidor web (Apache)
-2\. Instalar dependencias: composer install --no-dev
-3\. Compilar assets: npm run build
-4\. Ejecutar migraciones: php artisan migrate --force
-5\. Configurar permisos de storage y cache
-6\. Eliminar el archivo hot (ubicado en /public)
-
+- 1\. Configurar servidor web (Apache)
+- 2\. Instalar dependencias: composer install --no-dev
+- 3\. Compilar assets: npm run build
+- 4\. Ejecutar migraciones: php artisan migrate --force
+- 5\. Configurar permisos de storage y cache
+- 6\. Eliminar el archivo hot (ubicado en /public)
