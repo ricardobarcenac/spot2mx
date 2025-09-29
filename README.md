@@ -55,9 +55,9 @@ composer run dev
 Migraciones: php artisan migrate
 
 ### Cache
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
+- php artisan cache:clear
+- php artisan config:clear
+- php artisan route:clear
 
 ## 🌐 Rutas Principales
 
