@@ -108,3 +108,10 @@ Variables de Entorno Importantes
 - 4\. Ejecutar migraciones: php artisan migrate --force
 - 5\. Configurar permisos de storage y cache
 - 6\. Eliminar el archivo hot (ubicado en /public)
+
+### ¿Cómo funciona el aplicativo?
+- 1\. Registra tus datos (automáticamente iniciará sesión)
+- 2\. Ingresa al módulo URL Shortener
+- 3\. Registra la URL que deseas acortar
+- 4\. Si cumple con las condiciones mínimas, se registrará y se generará un código
+- 5\. Para probar el shortcut tienes un botón en la columna de acciones para realizar la redirección (cargará una pantalla previa donde te indicará que serás redirigido)
