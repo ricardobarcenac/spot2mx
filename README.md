@@ -1,12 +1,7 @@
-# \# Spot2MX - Acortador de URLs
+# Spot2MX - Acortador de URLs
+Technical Challenge Spot2 para acortar URLs construida con Laravel 12 y React 19.
 
-# 
-
-# Technical Challenge Spot2 para acortar URLs construida con Laravel 12 y React 19.
-
-# 
-
-# \## 🚀 Características
+## 🚀 Características
 
 # 
 
@@ -100,15 +95,9 @@
 
 # composer run dev
 
-# 
-
 # \## 🔧 Comandos Útiles
 
-# 
-
 # \### Laravel
-
-# 
 
 # \# Migraciones
 
@@ -164,7 +153,7 @@
 
 # La documentación de la API está disponible en Swagger UI:
 
-# \- http://localhost:8000/api/documentation
+# \- http://localhost:8000/api/documentation](http://18.216.237.66/api/documentation
 
 # 
 
@@ -198,7 +187,7 @@
 
 # APP\_NAME="Spot2MX"
 
-# APP\_URL=https://localhost:8000 (generador al ejecutar el proyecto)
+# APP\_URL=https://localhost:8000 (generado al ejecutar el proyecto)
 
 # 
 
